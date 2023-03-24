@@ -1,0 +1,38 @@
+trigger:
+- none
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+
+- script: |
+   echo '///////////////////////////////////////////////////////////////////////////////////////////////////////////////'
+   echo 'Note: nuget restore cmd needs to know two things - what packages, and where in solution are the packages supposed to go to'
+   echo '///////////////////////////////////////////////////////////////////////////////////////////////////////////////'
+   
+   nuget restore csharp-cucumber-selenium-framework\packages.config -PackagesDirectory packages
+  displayName: 'CMD - Restore packages'
+
+- script: |
+   echo '///////////////////////////////////////////////////////////////////////////////////////////////////////////////'
+   echo 'Note: if directory is empty then also dotnet build / dotnet test will fail'
+   echo '///////////////////////////////////////////////////////////////////////////////////////////////////////////////'
+   
+   dir packages
+  displayName: 'CMD - Double check packages directory'
+
+- script: |
+   dotnet build csharp-cucumber-selenium-framework.sln
+  displayName: 'CMD - Build with dotnet'
+
+- script: |
+   dotnet test
+  displayName: 'CMD - Test with dotnet'
+
+- task: techtalk.techtalk-specflow-plus.specflow-plus.SpecFlowPlus@0
+  displayName: 'SpecFlow+ build step.'
+  inputs:
+    projectFilePath: 'csharp-cucumber-selenium-framework'
+    testExecutionJson: |
+     $(Build.SourcesDirectory)\csharp-cucumber-selenium-framework\bin\Debug\TestExecution.json
