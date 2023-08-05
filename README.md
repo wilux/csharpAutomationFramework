@@ -1,6 +1,9 @@
-# csharp-cucumber-selenium-framework
+# csharp-cucumber-selenium-example
 A sample implementation of BDD UI tests with C# / SpecFlow
 
+## Application under test
+The feature files, step definitions and page objects were written for https://github.com/andreasneuber/automatic-test-sample-site.
+Readme in that repo has further details how to set it up.
 
 ### IDE used
 Microsoft Visual Studio Community 2022
