@@ -2,6 +2,8 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using System.Collections.Generic;
+using System.Configuration;
 
 // Example of filtering hooks using tags
 // See https://docs.specflow.org/projects/specflow/en/latest/Bindings/Hooks.html?highlight=hooks#tag-scoping
@@ -27,21 +29,25 @@ namespace csharp_cucumber_selenium_framework
         [BeforeScenario]
         public void CreateWebDriver()
         {
-            // The headless option ...
-            //    ChromeOptions options = new ChromeOptions();
-            //
-            //    options.AddArguments(new List<string>()
-            //    {
-            //      "--silent-launch",
-            //      "--no-startup-window",
-            //      "no-sandbox",
-            //      "headless"
-            //    });
+            ChromeOptions options = new ChromeOptions();
 
-            //    driver = new ChromeDriver(options);
+            // Headed 
+            options.AddArguments(new List<string>(){});
+
+            // The headless option...
+            if (ConfigurationManager.AppSettings["Headless"] == "true")
+            {
+                options.AddArguments(new List<string>()
+                {
+                  "--silent-launch",
+                  "--no-startup-window",
+                  "no-sandbox",
+                  "headless"
+                });
+            }
 
 
-            ChromeDriver driver = new ChromeDriver();
+            ChromeDriver driver = new ChromeDriver(options);
 
             // Make 'driver' available for DI (Dependency Injection)
             container.RegisterInstanceAs<IWebDriver>(driver);

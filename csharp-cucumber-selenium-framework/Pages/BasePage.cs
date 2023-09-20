@@ -2,12 +2,13 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.Configuration;
 
 namespace csharp_cucumber_selenium_framework.Pages
 {
     public class BasePage
     {
-        private string baseUrl = "http://localhost:8000";
+        private string baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
         protected WebDriverWait wait;
 
         public string GetBaseUrl()
