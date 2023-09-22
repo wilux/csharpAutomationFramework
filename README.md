@@ -45,6 +45,12 @@ Report will appear under menu item "Overview > SpecFlow+ LivingDoc".
 
 
 ### FAQ
+#### Where can I change the Base Url?
+See app.config > appSettings
+
+#### How can I switch browser to "headless"?
+See app.config > appSettings
+
 #### Error "csharp-cucumber-selenium-framework\bin\Debug\chromedriver.exe". Access to the path 'csharp-cucumber-selenium-framework\bin\Debug\chromedriver.exe' is denied.
 - Run `taskkill /f /im chromedriver.exe`
 - Clean solution
