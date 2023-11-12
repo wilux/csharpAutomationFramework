@@ -6,7 +6,7 @@ The feature files, step definitions and page objects were written for https://gi
 Readme in that repo has further details how to set it up.
 
 ### IDE used
-Microsoft Visual Studio Community 2022
+Microsoft Visual Studio Community 2022 (with .NET desktop development workload)
 
 ### Setup 
 - git clone 
