@@ -25,8 +25,14 @@ Especially ChromeDriver needs frequent updating.
 - Right-click on solution, build solution
 - Close and reopen solution
 
-### Run headless
-Open file `app.config`, find key "Headless" and set to `"true"`. Then rebuild solution.
+### Set Browser
+Open file `app.config` and find key "Browser". You can choose between:
+- chrome
+- chrome_headless
+- firefox
+- edge
+- safari
+After changing the browser, rebuild the solution.
 
 ### SpecFlow LivingDocs reports locally
 [Step-by-step guide for LivingDoc Generator](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/sbsguides/sbscli.html)
