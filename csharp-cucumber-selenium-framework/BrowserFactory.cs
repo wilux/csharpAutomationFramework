@@ -11,32 +11,30 @@ namespace csharp_cucumber_selenium_framework
     public class BrowserFactory
     {
         public IWebDriver browser;
-        IWebDriver driver;
 
         public BrowserFactory(string browserName) {
 
             switch (browserName)
             {
                 case "chrome":
-                    driver = this.SetChrome();
+                    this.browser = this.SetChrome();
                     break;
                 case "chrome_headless":
-                    driver = this.SetChromeHeadless();
+                    this.browser = this.SetChromeHeadless();
                     break;
                 case "firefox":
-                    driver = this.SetFirefox();
+                    this.browser = this.SetFirefox();
                     break;
                 case "edge":
-                    driver = this.SetEdge();
+                    this.browser = this.SetEdge();
                     break;
                 case "safari":
-                    driver = this.SetSafari();
+                    this.browser = this.SetSafari();
                     break;
                 default:
-                    driver = null;
+                    this.browser = null;
                     break;
             }
-            this.browser = driver;
         }
 
 
