@@ -37,7 +37,7 @@ namespace csharp_cucumber_selenium_framework.StepDefinitions
         public void ThenIShouldSeeAsResultFahrenheit(string expectedFahrenheit)
         {
             string actualFahrenheit = convertCelsiusPage.ReadFahrenheitField();
-            Assert.AreEqual(expectedFahrenheit, actualFahrenheit);
+            Assert.That(expectedFahrenheit, Is.EqualTo(actualFahrenheit));
         }
     }
 }

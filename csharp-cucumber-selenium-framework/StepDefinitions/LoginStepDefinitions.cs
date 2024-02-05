@@ -42,7 +42,7 @@ namespace csharp_cucumber_selenium_framework.StepDefinitions
         [Then(@"I should be able to access the protected area")]
         public void ThenIShouldBeAbleToAccessTheProtectedArea()
         {
-            Assert.IsTrue(userAccountPage.displayAdminDashboard(), "Admin Dashboard Is not displayed");
+            Assert.That(userAccountPage.displayAdminDashboard(), Is.True, "Admin Dashboard Is not displayed");
         }
 
         [Given(@"I enter following values to login")]

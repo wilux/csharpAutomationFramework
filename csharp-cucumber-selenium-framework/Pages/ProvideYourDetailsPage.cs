@@ -24,7 +24,7 @@ namespace csharp_cucumber_selenium_framework.Pages
         private readonly string inputHomePhoneNumber = "//input[@id='home']";
         private readonly string inputEmail = "//input[@id='email']";
         private readonly string btnSubmit = "//input[@id='submit-info']";
-        private readonly string titleForm = "//h2[contains(text(),'Form 1 - Information about yourself')]";
+        // private readonly string titleForm = "//h2[contains(text(),'Form 1 - Information about yourself')]";
 
 
         public ProvideYourDetailsPage(IWebDriver driver)

@@ -11,7 +11,7 @@ namespace csharp_cucumber_selenium_framework.Pages
         public string URL = "/index.php?action=sales";
 
         private readonly string titleSalesStatistics = "//h2[contains(text(),'Sales - Statistics')]";
-        private readonly string tableSalesDetails = "//table[@id='sales-details']";
+        // private readonly string tableSalesDetails = "//table[@id='sales-details']";
         private readonly string salesYearMonthHeader = "//th[@class='sales header-year-month']";
         private readonly string monthCell = "//td[contains(text(), '{0}')]";
         private readonly string monthSalesCell = "//td[contains(text(), '{0}')]/following-sibling::td";

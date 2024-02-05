@@ -46,7 +46,7 @@ namespace csharp_cucumber_selenium_framework.StepDefinitions
         public void ThenIWillBeLoggedIntoTheAdminDashboard()
         {
             UserAccountPage userAccountPage = new UserAccountPage(chromeDriver);
-            Assert.IsTrue(userAccountPage.displayAdminDashboard(), "Admin Dashboard is not displayed");
+            Assert.That(userAccountPage.displayAdminDashboard(),Is.True, "Admin Dashboard is not displayed");
         }
 
         [When(@"Admin searches for employee ""([^""]*)""")]
@@ -54,7 +54,7 @@ namespace csharp_cucumber_selenium_framework.StepDefinitions
         {
             userAccountPage.navigateToHumanResourcesSection();
 
-            Assert.IsTrue(employeePage.EmployeePageIsDisplayed(), "Employee Page is not displayed");
+            Assert.That(employeePage.EmployeePageIsDisplayed(),Is.True, "Employee Page is not displayed");
 
             employeePage.FillEmployeeNameInput(employeeName);
             employeePage.ClickSearchBtn();
@@ -63,13 +63,13 @@ namespace csharp_cucumber_selenium_framework.StepDefinitions
         [Then(@"information appears that employee ""([^""]*)"" belongs to department ""([^""]*)""")]
         public void ThenInformationAppearsThatEmployeeBelongsToDepartment(string expectedEmployeeName, string expectedDepartmentName)
         {
-            Assert.IsTrue(employeePage.EmployeeRecordIsDisplayed(), "No employee record is displayed");
+            Assert.That(employeePage.EmployeeRecordIsDisplayed(), Is.True, "No employee record is displayed");
 
             string actualEmployeeName = employeePage.GrabEmployeeName();
-            Assert.AreEqual(expectedEmployeeName, actualEmployeeName, "Expected employee name not found");
+            Assert.That(expectedEmployeeName, Is.EqualTo(actualEmployeeName), "Expected employee name not found");
 
             string actualDepartmentName = employeePage.GrabDepartmentName();
-            Assert.AreEqual(expectedDepartmentName, actualDepartmentName, "Expected department name not found");
+            Assert.That(expectedDepartmentName, Is.EqualTo(actualDepartmentName), "Expected department name not found");
         }
 
         [When(@"Admin looks up total sales amount for month ""([^""]*)"" in year ""([^""]*)""")]
@@ -77,9 +77,9 @@ namespace csharp_cucumber_selenium_framework.StepDefinitions
         {
             userAccountPage.NavigateToSalesSection();
 
-            Assert.IsTrue(salesPage.SalesStatisticsPageIsDisplayed(), "Sales statistics Page is not displayed");
-            Assert.IsTrue(salesPage.GrabYearMonthHeader().Contains(year), "Year " + year + " was not found.");
-            Assert.IsTrue(salesPage.MonthCellIsDisplayed(month), "Month " + month + " was not found.");
+            Assert.That(salesPage.SalesStatisticsPageIsDisplayed(), Is.True, "Sales statistics Page is not displayed");
+            Assert.That(salesPage.GrabYearMonthHeader().Contains(year), Is.True, "Year " + year + " was not found.");
+            Assert.That(salesPage.MonthCellIsDisplayed(month), Is.True, "Month " + month + " was not found.");
         }
 
         [Then(@"the total ""([^""]*)"" sales amount is ""([^""]*)""")]
@@ -87,7 +87,7 @@ namespace csharp_cucumber_selenium_framework.StepDefinitions
         {
             string actualSalesAmount = salesPage.GrabSalesAmountFromMonth(month);
 
-            Assert.AreEqual(expectedSalesAmount, actualSalesAmount,
+            Assert.That(expectedSalesAmount, Is.EqualTo(actualSalesAmount),
                 "Actual and expected sales amount for month of " + month + "do not match.");
         }
     }

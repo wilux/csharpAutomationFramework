@@ -57,7 +57,7 @@ namespace csharp_cucumber_selenium_framework.StepDefinitions
         public void ThenIWillSeeMessage(string expectedMessage)
         {
             string actualMessage = thankYouPage.GrabThankYouMessage();
-            Assert.AreEqual(expectedMessage,actualMessage,"Expected thank you message does not appear.");
+            Assert.That(expectedMessage, Is.EqualTo(actualMessage),"Expected thank you message does not appear.");
         }
 
 
