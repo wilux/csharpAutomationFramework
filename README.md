@@ -1,9 +1,6 @@
-# csharp-cucumber-selenium-example
-A sample implementation of BDD UI tests with C# / SpecFlow
-
-## Application under test
-The feature files, step definitions and page objects were written for https://github.com/andreasneuber/automatic-test-sample-site.
-Readme in that repo has further details how to set it up.
+# C# BDD Automation Framework
+* Note:
+This is a basic automation framework that can be expanded upon as needed. It provides a solid foundation for building comprehensive test suites using SpecFlow and Allure.
 
 ### IDE used
 Microsoft Visual Studio Community 2022 (with .NET desktop development workload)
@@ -17,22 +14,26 @@ Microsoft Visual Studio Community 2022 (with .NET desktop development workload)
 - Go to "View" and open the "Test Explorer" window
 - Click green "Run All Tests In View" button
 
-### Updating
-Especially ChromeDriver needs frequent updating.
-- Go to "Tools > NuGet Package Manager > Manage NuGet Packages for Solution..."
-- Go to tab "Updates"
-- Update
-- Right-click on solution, build solution
-- Close and reopen solution
+### Running Tests from Terminal:
+To execute the example test, use the following command:
 
-### Set Browser
-Open file `app.config` and find key "Browser". You can choose between:
-- chrome
-- chrome_headless
-- firefox
-- edge
-- safari
-After changing the browser, rebuild the solution.
+```Bash
+dotnet test -e browser=edge -e options=--headless
+``` 
+### Explanation:
+#### Specifies the browser to use:
+```Bash
+-e browser=edge 
+``` 
+ Supported browsers include firefox, chrome, safari, and edge. Default is edge.
+
+#### Specify options capabilities:
+```Bash
+-e options=--headless
+``` 
+```Bash
+-e options=--option1, --option2, optionN...
+```
 
 ### SpecFlow LivingDocs reports locally
 [Step-by-step guide for LivingDoc Generator](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/sbsguides/sbscli.html)
@@ -49,13 +50,6 @@ Report will appear under menu item "Overview > SpecFlow+ LivingDoc".
 - Go to definition: `F12`
 - Quick code formatting: `Ctrl + K , Ctrl + D`
 
-
-### FAQ
-#### Where can I change the Base Url?
-See app.config > appSettings
-
-#### How can I switch browser to "headless"?
-See app.config > appSettings
 
 #### Error "csharp-cucumber-selenium-framework\bin\Debug\chromedriver.exe". Access to the path 'csharp-cucumber-selenium-framework\bin\Debug\chromedriver.exe' is denied.
 - Run `taskkill /f /im chromedriver.exe`
