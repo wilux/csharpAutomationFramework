@@ -1,7 +1,9 @@
-﻿using BoDi;
+﻿using Allure.Net.Commons;
+using BoDi;
 using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
+using System.IO;
 
 
 
@@ -40,8 +42,18 @@ namespace csharp_cucumber_selenium_framework
             container.RegisterInstanceAs<IWebDriver>(factory.browser);
 
         }
-
-
+        [AfterStep]
+        public void AfterStep()
+        {
+   
+            var driver = container.Resolve<IWebDriver>();
+            var screenshot = ((ITakesScreenshot) driver).GetScreenshot();
+            byte[] screenshotBytes = screenshot.AsByteArray;
+            using (var memoryStream = new MemoryStream(screenshotBytes))
+            AllureApi.AddAttachment("Screenshot", "image/png", screenshotBytes);
+            
+        }
+    
         [AfterScenario]
         public void DestroyWebDriver()
         {
