@@ -3,30 +3,25 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Safari;
-using System.Collections.Generic;
-using System.Configuration;
 
 namespace csharp_cucumber_selenium_framework
 {
-    public class BrowserFactory
+    public class BrowserSelector
     {
         public IWebDriver browser;
-
-        public BrowserFactory(string browserName) {
+          
+        public BrowserSelector(string browserName, string[] options) {
 
             switch (browserName)
             {
                 case "chrome":
-                    this.browser = this.SetChrome();
-                    break;
-                case "chrome_headless":
-                    this.browser = this.SetChromeHeadless();
+                    this.browser = this.SetChrome(options);
                     break;
                 case "firefox":
-                    this.browser = this.SetFirefox();
+                    this.browser = this.SetFirefox(options);
                     break;
                 case "edge":
-                    this.browser = this.SetEdge();
+                    this.browser = this.SetEdge(options);
                     break;
                 case "safari":
                     this.browser = this.SetSafari();
@@ -38,37 +33,26 @@ namespace csharp_cucumber_selenium_framework
         }
 
 
-        private ChromeDriver SetChrome()
+        private ChromeDriver SetChrome(string[] optionsArg)
         {
             var options = new ChromeOptions();
-            options.AddArguments(new List<string>() { });
+            options.AddArguments(optionsArg);
             return new ChromeDriver(options);
         }
 
-        private ChromeDriver SetChromeHeadless()
-        {
-            var options = new ChromeOptions();
-            options.AddArguments(new List<string>()
-            {
-                "--silent-launch",
-                "--no-startup-window",
-                "no-sandbox",
-                "headless"
-            });
-            return new ChromeDriver(options);
-        }
 
-        private FirefoxDriver SetFirefox()
+
+        private FirefoxDriver SetFirefox(string[] optionsArg)
         {
             var options = new FirefoxOptions();
-            options.AddArguments(new List<string>() { });
+            options.AddArguments(optionsArg);
             return new FirefoxDriver(options);
         }
 
-        private EdgeDriver SetEdge()
+        private EdgeDriver SetEdge(string[] optionsArg)
         {
             var options = new EdgeOptions();
-            options.AddArguments(new List<string>() { });
+            options.AddArguments(optionsArg);
             return new EdgeDriver(options);
         }
 
