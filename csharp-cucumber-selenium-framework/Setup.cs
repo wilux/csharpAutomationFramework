@@ -1,10 +1,6 @@
 ﻿using BoDi;
-using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using System;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 using TechTalk.SpecFlow;
 
 
@@ -35,8 +31,11 @@ namespace csharp_cucumber_selenium_framework
             {
                 optionsList = options.Split(',');
             }
+            if (string.IsNullOrEmpty(browserArg))
+            {
+                browserArg = "edge";
+            }
 
-            //BrowserSelector factory = new BrowserSelector(ConfigurationManager.AppSettings["Browser"]);
             BrowserSelector factory = new BrowserSelector(browserArg, optionsList);
             container.RegisterInstanceAs<IWebDriver>(factory.browser);
 
